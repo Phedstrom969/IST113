@@ -5,7 +5,7 @@ function newElement() {
   li.appendChild(t);
 
   if (inputValue === '') {
-    alert("Yout must write something");
+    alert("You must write something");
   } else {
     document.getElementById("ulTaskList").appendChild(li);
   }
