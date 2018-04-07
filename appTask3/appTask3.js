@@ -1,6 +1,7 @@
 var myKey = "listValues";
 var myItems = [];
 
+
 $(document).ready(function(){
 
   setupLocal();
@@ -12,13 +13,17 @@ $(document).ready(function(){
       if (curVal === '')
       {
         alert("You must write something");
-
       } else {
-
+        
         newListItem(curVal);
         myItems.push(curVal);
         saveItems();
+        $("#userInput").val('');
       }
+
+      $(".close").on("click", function(){
+        deleteTask(this);
+      });
   });
 });
 
@@ -32,18 +37,16 @@ function setupLocal() {
      $(myItems).each(function(){
        newListItem(this);
      });
+
+     $(".close").on("click", function(){
+       deleteTask(this);
+     });
   }
 }
 
 function newListItem(userInput){
-
     let liElement = '<li>' + userInput +
                     '<span class ="close">X</span></li>';
-
-    $(".close").on("click", function(){
-      deleteTask(this);
-    });
-
     $("#ulTaskList").append(liElement);
 }
 
@@ -52,6 +55,7 @@ function deleteTask(item){
   saveItems();
   $(item).closest("li").remove();
 }
+
 
 function saveItems() {
   let myItemsString = JSON.stringify(myItems);
